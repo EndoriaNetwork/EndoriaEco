@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class Coins
 {
-	public static void createAccount(Player player, long coins)
+	public static void createAccount(Player player, Double coins)
 	{
 		try
 		{
@@ -22,7 +22,7 @@ public class Coins
 				sts.close();
 				sts = MySQL.getConnection().prepareStatement("INSERT INTO coins (player_uuid, coins) VALUES (?, ?)");
 				sts.setString(1, player.getUniqueId().toString());
-				sts.setLong(2, coins);
+				sts.setDouble(2, coins);
 				sts.executeUpdate();
 			}
 		} catch (SQLException e)
@@ -31,7 +31,7 @@ public class Coins
 		}
 	}
 
-	public static long getCoins(Player player)
+	public static Double getCoins(Player player)
 	{
 		try
 		{
@@ -40,16 +40,16 @@ public class Coins
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
 			{
-				return rs.getLong("coins");
+				return rs.getDouble("coins");
 			}
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		return 0L;
+		return 0D;
 	}
 
-	public static void addCoins(Player player, long coins)
+	public static void addCoins(Player player, Double coins)
 	{
 		if (coins <= 0L)
 		{
@@ -62,10 +62,10 @@ public class Coins
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
 			{
-				long money = rs.getLong("coins");
+				Double money = rs.getDouble("coins");
 				sts.close();
 				sts = MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
-				sts.setLong(1, coins + money);
+				sts.setDouble(1, coins + money);
 				sts.setString(2, player.getUniqueId().toString());
 				sts.executeUpdate();
 			}
@@ -75,7 +75,7 @@ public class Coins
 		}
 	}
 
-	public static void removeCoins(Player player, long coins)
+	public static void removeCoins(Player player, Double coins)
 	{
 		if (coins <= 0L)
 		{
@@ -88,14 +88,14 @@ public class Coins
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
 			{
-				long money = rs.getLong("coins");
+				Double money = rs.getDouble("coins");
 				sts.close();
 				if (money - coins < 0L)
 				{
 					coins = money;
 				}
 				sts = MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
-				sts.setLong(1, money - coins);
+				sts.setDouble(1, money - coins);
 				sts.setString(2, player.getUniqueId().toString());
 				sts.executeUpdate();
 			}
@@ -105,7 +105,7 @@ public class Coins
 		}
 	}
 
-	public static void setCoins(Player player, long coins)
+	public static void setCoins(Player player, Double coins)
 	{
 		if (coins <= 0L)
 		{
@@ -118,10 +118,10 @@ public class Coins
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
 			{
-				long money = rs.getLong("coins");
+				Double money = rs.getDouble("coins");
 				sts.close();
 				sts = MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
-				sts.setLong(1, coins);
+				sts.setDouble(1, coins);
 				sts.setString(2, player.getUniqueId().toString());
 				sts.executeUpdate();
 			}

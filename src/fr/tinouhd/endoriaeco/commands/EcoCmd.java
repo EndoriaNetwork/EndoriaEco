@@ -21,7 +21,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 			{
 				Player target = Bukkit.getPlayer(args[0]);
 
-				Long coins = Coins.getCoins(target);
+				Double coins = Coins.getCoins(target);
 
 				sender.sendMessage(target.getDisplayName() + " §aa §b" + coins.toString() + "§b ✪ §a!");
 			} else
@@ -36,7 +36,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 				if (Bukkit.getPlayer(args[1]) != null)
 				{
 					Player target = Bukkit.getPlayer(args[1]);
-					Long amount = Long.parseLong(args[2]);
+					Double amount = Double.parseDouble(args[2]);
 
 					Coins.addCoins(target, amount);
 					sender.sendMessage("§bVous avez ajouté §a" + amount + " ✪§b a §e" + target.getDisplayName());
@@ -46,7 +46,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 				if (Bukkit.getPlayer(args[1]) != null)
 				{
 					Player target = Bukkit.getPlayer(args[1]);
-					Long amount = Long.parseLong(args[2]);
+					Double amount = Double.parseDouble(args[2]);
 
 					Coins.removeCoins(target, amount);
 					sender.sendMessage("§bVous avez retiré §c" + amount + " ✪§b a §e" + target.getDisplayName());
@@ -56,7 +56,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 				if (Bukkit.getPlayer(args[1]) != null)
 				{
 					Player target = Bukkit.getPlayer(args[1]);
-					Long amount = Long.parseLong(args[2]);
+					Double amount = Double.parseDouble(args[2]);
 
 					Coins.setCoins(target, amount);
 					sender.sendMessage("§bVous avez fixé §a" + amount + " ✪§b au solde de §e" + target.getDisplayName());
