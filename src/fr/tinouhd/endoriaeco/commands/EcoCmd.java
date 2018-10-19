@@ -39,6 +39,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 					Long amount = Long.parseLong(args[2]);
 
 					Coins.addCoins(target, amount);
+					sender.sendMessage("§bVous avez ajouté §a" + amount + " ✪§b a §e" + target.getDisplayName());
 				}
 			} else if (args[0].equalsIgnoreCase("remove"))
 			{
@@ -48,6 +49,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 					Long amount = Long.parseLong(args[2]);
 
 					Coins.removeCoins(target, amount);
+					sender.sendMessage("§bVous avez retiré §c" + amount + " ✪§b a §e" + target.getDisplayName());
 				}
 			} else if (args[0].equalsIgnoreCase("set"))
 			{
@@ -57,6 +59,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 					Long amount = Long.parseLong(args[2]);
 
 					Coins.setCoins(target, amount);
+					sender.sendMessage("§bVous avez fixé §a" + amount + " ✪§b au solde de §e" + target.getDisplayName());
 				}
 			} else
 			{
