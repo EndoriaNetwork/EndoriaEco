@@ -35,7 +35,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 			{
 				if (Bukkit.getPlayer(args[1]) != null)
 				{
-					Player target = Bukkit.getPlayer(args[0]);
+					Player target = Bukkit.getPlayer(args[1]);
 					Long amount = Long.parseLong(args[2]);
 
 					Coins.addCoins(target, amount);
@@ -44,7 +44,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 			{
 				if (Bukkit.getPlayer(args[1]) != null)
 				{
-					Player target = Bukkit.getPlayer(args[0]);
+					Player target = Bukkit.getPlayer(args[1]);
 					Long amount = Long.parseLong(args[2]);
 
 					Coins.removeCoins(target, amount);
@@ -53,7 +53,7 @@ public class EcoCmd implements CommandExecutor, TabCompleter
 			{
 				if (Bukkit.getPlayer(args[1]) != null)
 				{
-					Player target = Bukkit.getPlayer(args[0]);
+					Player target = Bukkit.getPlayer(args[1]);
 					Long amount = Long.parseLong(args[2]);
 
 					Coins.setCoins(target, amount);
