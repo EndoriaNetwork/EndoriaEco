@@ -1,0 +1,8 @@
+name: EndoriaEco
+version: 1.0
+main: fr.tinouhd.endoriaeco.Main
+authors: [hugob147, TinouHD]
+commands:
+  eco:
+    description: Permet de manipuler l'economie des joueurs.
+    permission: eco.admin
