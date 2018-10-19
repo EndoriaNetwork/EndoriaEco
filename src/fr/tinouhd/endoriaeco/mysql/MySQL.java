@@ -1,4 +1,4 @@
-package fr.hugob147.endorialobby.mysql;
+package fr.tinouhd.endoriaeco.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

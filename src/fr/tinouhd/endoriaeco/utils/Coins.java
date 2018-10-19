@@ -1,6 +1,7 @@
 package fr.tinouhd.endoriaeco.utils;
 
 
+import fr.tinouhd.endoriaeco.mysql.MySQL;
 import org.bukkit.entity.Player;
 
 import java.sql.PreparedStatement;
@@ -13,13 +14,13 @@ public class Coins
 	{
 		try
 		{
-			PreparedStatement sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
+			PreparedStatement sts = MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
 			sts.setString(1, player.getUniqueId().toString());
 			ResultSet rs = sts.executeQuery();
 			if (!rs.next())
 			{
 				sts.close();
-				sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("INSERT INTO coins (player_uuid, coins) VALUES (?, ?)");
+				sts = MySQL.getConnection().prepareStatement("INSERT INTO coins (player_uuid, coins) VALUES (?, ?)");
 				sts.setString(1, player.getUniqueId().toString());
 				sts.setLong(2, coins);
 				sts.executeUpdate();
@@ -34,7 +35,7 @@ public class Coins
 	{
 		try
 		{
-			PreparedStatement sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
+			PreparedStatement sts = MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
 			sts.setString(1, player.getUniqueId().toString());
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
@@ -56,14 +57,14 @@ public class Coins
 		}
 		try
 		{
-			PreparedStatement sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
+			PreparedStatement sts = MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
 			sts.setString(1, player.getUniqueId().toString());
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
 			{
 				long money = rs.getLong("coins");
 				sts.close();
-				sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
+				sts = MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
 				sts.setLong(1, coins + money);
 				sts.setString(2, player.getUniqueId().toString());
 				sts.executeUpdate();
@@ -82,7 +83,7 @@ public class Coins
 		}
 		try
 		{
-			PreparedStatement sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
+			PreparedStatement sts = MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
 			sts.setString(1, player.getUniqueId().toString());
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
@@ -93,7 +94,7 @@ public class Coins
 				{
 					coins = money;
 				}
-				sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
+				sts = MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
 				sts.setLong(1, money - coins);
 				sts.setString(2, player.getUniqueId().toString());
 				sts.executeUpdate();
@@ -112,14 +113,14 @@ public class Coins
 		}
 		try
 		{
-			PreparedStatement sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
+			PreparedStatement sts = MySQL.getConnection().prepareStatement("SELECT coins FROM coins WHERE player_uuid=?");
 			sts.setString(1, player.getUniqueId().toString());
 			ResultSet rs = sts.executeQuery();
 			if (rs.next())
 			{
 				long money = rs.getLong("coins");
 				sts.close();
-				sts = fr.hugob147.endorialobby.mysql.MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
+				sts = MySQL.getConnection().prepareStatement("UPDATE coins SET coins=? WHERE player_uuid=?");
 				sts.setLong(1, coins);
 				sts.setString(2, player.getUniqueId().toString());
 				sts.executeUpdate();
